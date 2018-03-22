@@ -1,5 +1,10 @@
 import os
 
+'''
+FYI: This script will only generate project's within the same
+directory as its self.
+'''
+
 
 def clear():
     os.system('cls' if os.name == "nt" else 'clear')
