@@ -11,8 +11,6 @@ def clear():
 
 
 def build_filesys():
-    os.system("say 'Building {} Project'".format(APP_NAME))
-
     os.system("django-admin startproject {}_main".format(PROJ_NAME))
     os.rename(PROJ_NAME+"_main", PROJ_NAME+"_proj")
     os.chdir('{}_proj'.format(PROJ_NAME))
