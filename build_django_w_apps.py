@@ -59,8 +59,8 @@ def to_do_list():
     print("\nTO DO LIST:")
     print("\t- Add 'apps.{}' to INSTALLED APPS inside {}_main/settings.py\
         ".format(APP_NAME, PROJ_NAME))
-    print("\t- Add 'url(r'^', include('apps.{}.urls'), namespace='{}'),' to \
-        \n\t  urls.py inside {}_main".format(APP_NAME, APP_NAME, PROJ_NAME))
+    print("\t- Add 'url(r'^', include('apps.{}.urls')),' to \
+        \n\t  urls.py inside {}_main".format(APP_NAME, APP_NAME))
     print("\t- Add the 'include' import to 'from django.conf.urls import url'\n")
 
 
