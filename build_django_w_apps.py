@@ -1,10 +1,5 @@
 import os
 
-'''
-FYI: This script will only generate project's within the same
-directory as its self.
-'''
-
 
 def clear():
     os.system('cls' if os.name == "nt" else 'clear')
@@ -23,7 +18,15 @@ def build_filesys():
 
     os.chdir(APP_NAME)
     os.system("touch urls.py")
+    urls_starter = "from django.conf.urls import url\n\nfrom . import views"
+    urls_starter += "\n\nurlpatterns = [\n"
+    urls_starter += "    url(r'^$', views.index)\n]"
+    os.system('echo "{}" >> urls.py'.format(urls_starter))
     os.makedirs("templates/{}".format(APP_NAME))
+
+    index_view = "\ndef index(request):\n    "
+    index_view += "return render(request, '{}/index.html')".format(APP_NAME)
+    os.system(' echo "{}" >> views.py'.format(index_view))
 
     os.mkdir("static")
     os.chdir("static")
@@ -35,8 +38,11 @@ def build_filesys():
 
     os.chdir("templates/{}".format(APP_NAME))
     os.system("touch index.html")
+
     os.chdir("../../static/{}/css".format(APP_NAME))
     os.system("touch style.css")
+    css_starter = "* {\n\tpadding: 0;\n\tmargin: 0;\n}"
+    os.system('echo "{}" >> style.css'.format(css_starter))
     return root_dir
 
 
@@ -59,9 +65,10 @@ def to_do_list():
     print("\nTO DO LIST:")
     print("\t- Add 'apps.{}' to INSTALLED APPS inside {}_main/settings.py\
         ".format(APP_NAME, PROJ_NAME))
-    print("\t- Add 'url(r'^', include('apps.{}.urls')),' to \
-        \n\t  urls.py inside {}_main".format(APP_NAME, APP_NAME))
-    print("\t- Add the 'include' import to 'from django.conf.urls import url'\n")
+    print("\t- Add 'url(r'^admin/', include('apps.{}.urls'), namespace='{}'),' to \
+        \n\t  urls.py inside {}_main".format(APP_NAME, APP_NAME, PROJ_NAME))
+    print("\t- Add the 'include' import to 'from django.conf.urls import url'")
+    print("\t- Be SURE to add an index route for your already created index view function\n")
 
 
 if __name__ == '__main__':
