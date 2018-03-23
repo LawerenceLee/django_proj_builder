@@ -1,4 +1,5 @@
 import os
+import shutil
 
 
 def clear():
@@ -6,6 +7,7 @@ def clear():
 
 
 def build_filesys():
+    start_dir = os.getcwd()
     os.system("django-admin startproject {}_main".format(PROJ_NAME))
     os.rename(PROJ_NAME+"_main", PROJ_NAME+"_proj")
     os.chdir('{}_proj'.format(PROJ_NAME))
@@ -43,32 +45,19 @@ def build_filesys():
     os.system("touch style.css")
     css_starter = "* {\n\tpadding: 0;\n\tmargin: 0;\n}"
     os.system('echo "{}" >> style.css'.format(css_starter))
-    return root_dir
 
-
-def build_history(root_dir):
-    seen_dir = []
-    seen_files = []
-    for root, dirs, files in os.walk(root_dir):
-        for directory in dirs:
-            seen_dir.append(directory)
-        for file in files:
-            seen_files.append(file)
-
-    print("\nCREATED THE FOLLOWING DIRECTORIES:")
-    print(sorted(seen_dir))
-    print("\nCREATED THE FOLLOWING FILES:")
-    print(sorted(seen_files))
+    os.chdir(start_dir)
+    shutil.move(root_dir, "{}/..".format(start_dir))
+    return start_dir + PROJ_NAME + "_proj"
 
 
 def to_do_list():
     print("\nTO DO LIST:")
     print("\t- Add 'apps.{}' to INSTALLED APPS inside {}_main/settings.py\
         ".format(APP_NAME, PROJ_NAME))
-    print("\t- Add 'url(r'^admin/', include('apps.{}.urls'), namespace='{}'),' to \
+    print("\t- Add 'url(r'^'/', include('apps.{}.urls'),' to \
         \n\t  urls.py inside {}_main".format(APP_NAME, APP_NAME, PROJ_NAME))
-    print("\t- Add the 'include' import to 'from django.conf.urls import url'")
-    print("\t- Be SURE to add an index route for your already created index view function\n")
+    print("\t- Add the 'include' import to 'from django.conf.urls import url'\n")
 
 
 if __name__ == '__main__':
@@ -76,5 +65,5 @@ if __name__ == '__main__':
     print("--------------------------------- DJANGO PROJECT BUILDER WITH APPS ---------------------------------\n")
     PROJ_NAME = raw_input("Enter a Project Name: ")
     APP_NAME = raw_input("Enter an App Name: ")
-    build_history(build_filesys())
+    build_filesys()
     to_do_list()
