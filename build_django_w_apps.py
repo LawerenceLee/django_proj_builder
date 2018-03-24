@@ -58,15 +58,17 @@ def to_do_list():
         ".format(APP_NAME, PROJ_NAME))
     print("\t- Add 'url(r'^'/', include('apps.{}.urls'),' to \
         \n\t  urls.py inside {}_main".format(APP_NAME, APP_NAME, PROJ_NAME))
-    print("\t- Add the 'include' import to 'from django.conf.urls import url'\n")
+    print("\t- Add the 'include' import to 'from django.conf.urls import url'")
     print("\t- Change the path of the link tag in 'layout.html'")
     print("\t- Change the title in the title tag in 'layout.html'")
-    print("\t- Change the path of the extends function in 'index.html'")
+    print("\t- Change the path of the extends function in 'index.html'\n")
 
 
 if __name__ == '__main__':
     clear()
-    print("--------------------------------- DJANGO PROJECT BUILDER WITH APPS ---------------------------------\n")
+    thirty_three = "-" * 33
+    print("{} DJANGO PROJECT BUILDER WITH APPS {}".format(
+        thirty_three, thirty_three))
     PROJ_NAME = raw_input("Enter a Project Name: ")
     APP_NAME = raw_input("Enter an App Name: ")
     build_filesys()

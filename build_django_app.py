@@ -60,7 +60,7 @@ def to_do_list():
 if __name__ == '__main__':
     clear()
     thirty_three = "-" * 33
-    print("{} DJANGO PROJECT BUILDER WITH APPS {}\n".format(
+    print("{} DJANGO APP BUILDER {}\n".format(
         thirty_three, thirty_three))
     APP_NAME = raw_input("Enter an App Name: ")
     build_filesys()
