@@ -10,6 +10,7 @@ def build_filesys():
     start_path = os.getcwd()
     index_path = start_path + "/PREBUILT_TEMPLATES/index.html"
     layout_path = start_path + "/PREBUILT_TEMPLATES/layout.html"
+    css_path = start_path + "/PREBUILT_TEMPLATES/style.css"
     os.system("django-admin startproject {}_main".format(PROJ_NAME))
     os.rename(PROJ_NAME+"_main", PROJ_NAME+"_proj")
     os.chdir('{}_proj'.format(PROJ_NAME))
@@ -45,9 +46,7 @@ def build_filesys():
     shutil.copy(layout_path, os.getcwd()+"/")
 
     os.chdir("../../static/{}/css".format(APP_NAME))
-    os.system("touch style.css")
-    css_starter = "* {\n\tpadding: 0;\n\tmargin: 0;\n}"
-    os.system('echo "{}" >> style.css'.format(css_starter))
+    shutil.copy(css_path, os.getcwd()+"/")
 
     shutil.move(root_path, "{}/..".format(start_path))
 

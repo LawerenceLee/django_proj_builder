@@ -10,6 +10,7 @@ def build_filesys():
     start_path = os.getcwd()
     index_path = start_path + "/PREBUILT_TEMPLATES/index.html"
     layout_path = start_path + "/PREBUILT_TEMPLATES/layout.html"
+    css_path = start_path + "/PREBUILT_TEMPLATES/style.css"
     os.system("django-admin startapp {}".format(APP_NAME))
 
     os.chdir(APP_NAME)
@@ -38,9 +39,7 @@ def build_filesys():
     shutil.copy(layout_path, os.getcwd()+"/")
 
     os.chdir("../../static/{}/css".format(APP_NAME))
-    os.system("touch style.css")
-    css_starter = "* {\n\tpadding: 0;\n\tmargin: 0;\n}"
-    os.system('echo "{}" >> style.css'.format(css_starter))
+    shutil.copy(css_path, os.getcwd()+"/")
 
     shutil.move(root_path, "{}/..".format(start_path))
 
@@ -49,12 +48,13 @@ def to_do_list():
     print("\nTO DO LIST:")
     print("\t- Add 'apps.{}' to INSTALLED APPS inside your project's main settings.py\
         ".format(APP_NAME))
-    print("\t- Add 'url(r'^'/', include('apps.{}.urls'),' to \
+    print("\t- Add 'url(r'^/', include('apps.{}.urls')),' to \
         \n\t  your project's main urls.py".format(APP_NAME))
-    print("\t- Add the 'include' import to 'from django.conf.urls import url'\n")
+    print("\t- Add the 'include' import to 'from django.conf.urls import url'")
     print("\t- Change the path of the link tag in 'layout.html'")
     print("\t- Change the title in the title tag in 'layout.html'")
     print("\t- Change the path of the extends function in 'index.html'")
+    print("\t- MODELS: Remember to use makemigrations, migrate after building your models.")
 
 
 if __name__ == '__main__':
