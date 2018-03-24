@@ -8,6 +8,8 @@ def clear():
 
 def build_filesys():
     start_path = os.getcwd()
+    index_path = start_path + "/PREBUILT_TEMPLATES/index.html"
+    layout_path = start_path + "/PREBUILT_TEMPLATES/layout.html"
     os.system("django-admin startproject {}_main".format(PROJ_NAME))
     os.rename(PROJ_NAME+"_main", PROJ_NAME+"_proj")
     os.chdir('{}_proj'.format(PROJ_NAME))
@@ -39,7 +41,8 @@ def build_filesys():
     os.chdir("../../")
 
     os.chdir("templates/{}".format(APP_NAME))
-    os.system("touch index.html")
+    shutil.copy(index_path, os.getcwd()+"/")
+    shutil.copy(layout_path, os.getcwd()+"/")
 
     os.chdir("../../static/{}/css".format(APP_NAME))
     os.system("touch style.css")
@@ -56,6 +59,9 @@ def to_do_list():
     print("\t- Add 'url(r'^'/', include('apps.{}.urls'),' to \
         \n\t  urls.py inside {}_main".format(APP_NAME, APP_NAME, PROJ_NAME))
     print("\t- Add the 'include' import to 'from django.conf.urls import url'\n")
+    print("\t- Change the path of the link tag in 'layout.html'")
+    print("\t- Change the title in the title tag in 'layout.html'")
+    print("\t- Change the path of the extends function in 'index.html'")
 
 
 if __name__ == '__main__':
