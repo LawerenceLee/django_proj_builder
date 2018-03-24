@@ -7,11 +7,11 @@ def clear():
 
 
 def build_filesys():
-    start_dir = os.getcwd()
+    start_path = os.getcwd()
     os.system("django-admin startproject {}_main".format(PROJ_NAME))
     os.rename(PROJ_NAME+"_main", PROJ_NAME+"_proj")
     os.chdir('{}_proj'.format(PROJ_NAME))
-    root_dir = os.getcwd()
+    root_path = os.getcwd()
     os.mkdir("apps")
 
     os.chdir("apps")
@@ -46,9 +46,7 @@ def build_filesys():
     css_starter = "* {\n\tpadding: 0;\n\tmargin: 0;\n}"
     os.system('echo "{}" >> style.css'.format(css_starter))
 
-    os.chdir(start_dir)
-    shutil.move(root_dir, "{}/..".format(start_dir))
-    return start_dir + PROJ_NAME + "_proj"
+    shutil.move(root_path, "{}/..".format(start_path))
 
 
 def to_do_list():
