@@ -33,7 +33,8 @@ def build_filesys():
     os.system('echo "{}" >> urls.py'.format(urls_starter))
 
     # Append a basic index view function into 'views.py'
-    index_view = "\ndef index(request):\n    "
+    index_view = "from django.contrib import messages"
+    index_view += "\ndef index(request):\n    "
     index_view += "return render(request, '{}/index.html')".format(APP_NAME)
     os.system(' echo "{}" >> views.py'.format(index_view))
 
