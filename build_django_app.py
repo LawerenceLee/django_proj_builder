@@ -73,6 +73,6 @@ if __name__ == '__main__':
     thirty_three = "-" * 33
     print("{} DJANGO PROJECT BUILDER WITH APPS {}".format(
         thirty_three, thirty_three))
-    APP_NAME = raw_input("\nEnter an App Name: ")
+    APP_NAME = input("\nEnter an App Name: ")
     build_filesys()
     to_do_list()
